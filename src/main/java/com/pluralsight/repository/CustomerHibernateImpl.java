@@ -1,6 +1,7 @@
 package com.pluralsight.repository;
 
 import com.pluralsight.object.CustomerObject;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -8,6 +9,9 @@ import org.springframework.stereotype.Repository;
  */
 @Repository("customerRepository")
 public class CustomerHibernateImpl implements CustomerHibernate {
+
+    @Value("${dbUsername}")
+    private String dbUsername;
 
     final CustomerObject customer = new CustomerObject();
 
@@ -17,6 +21,9 @@ public class CustomerHibernateImpl implements CustomerHibernate {
     }
 
     public String findCustomer() {
+
+        System.out.println(dbUsername);
+
        return customer.getFirstName();
     }
 }
